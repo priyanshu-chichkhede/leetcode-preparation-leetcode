@@ -1,36 +1,35 @@
-// Last updated: 7/4/2026, 10:16:54 PM
+// Last updated: 7/4/2026, 11:21:33 PM
 1class Solution {
 2public:
-3    bool checkInclusion(string s1, string s2) {
-4        int freq[26] = {0};
-5
-6        for (int i = 0; i < s1.length(); i++) {
-7            freq[s1[i] - 'a']++;
-8        }
+3    string reverseWords(string s) {
+4        reverse(s.begin(), s.end());
+5        // we will first reverse the given string 
+6
+7        string ans = "";
+8        // creating a ans string on the whole sentence
 9
-10        int windSize = s1.length();
-11
-12        for (int i = 0; i + windSize <= s2.length(); i++) {
-13            int windFreq[26] = {0};
-14
-15            for (int j = i; j < i + windSize; j++) {
-16                windFreq[s2[j] - 'a']++;
-17            }
-18
-19            bool same = true;
-20
-21            for (int j = 0; j < 26; j++) {
-22                if (freq[j] != windFreq[j]) {
-23                    same = false;
-24                    break;
-25                }
+10        for (int i = 0; i < s.length(); i++) {
+11            string word = "";
+12            // we dont know what a word is so we put the characters in a word 
+13            //and wherever there is a whitespace we stop and validate that as 
+14            //as a word
+15
+16            while (i < s.length() && s[i] != ' ') {
+17                word = word + s[i];
+18                i++;
+19            }
+20            //we again then reverse the word and store it in the ans where 
+21            //there is a space for 2nd word and the actual word which we just reversed
+22            reverse(word.begin(), word.end());
+23
+24            if (word.length() > 0) {
+25                ans = ans + " " + word;
 26            }
-27
-28            if (same) {
-29                return true;
-30            }
-31        }
-32
-33        return false;
-34    }
-35};
+27        }
+28        //we remove the first whitespace as shown on the ans part where from 1 the substring starts
+29        // removing the 0
+30
+31        return ans.substr(1);
+32    }
+33};
+34
