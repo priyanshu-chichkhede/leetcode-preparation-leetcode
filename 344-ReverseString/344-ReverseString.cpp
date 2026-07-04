@@ -1,15 +1,15 @@
-// Last updated: 7/4/2026, 4:38:19 PM
-class Solution {
-public:
-    void reverseString(vector<char>& s) {
-        int i=0;
-        int n=s.size();
-        int j=n-1;
-        while(i<j){
-            swap(s[i],s[j]);
-            i++;
-            j--;
-        }
-        
-    }
-};
+// Last updated: 7/4/2026, 4:42:15 PM
+1class Solution {
+2public:
+3    void reverseString(vector<char>& s) {
+4        int i=0;
+5        int n=s.size();
+6        int j=n-1;
+7        while(i<j){
+8            swap(s[i],s[j]);
+9            i++;
+10            j--;
+11        }
+12        
+13    }
+14};
