@@ -1,4 +1,4 @@
-// Last updated: 7/23/2026, 12:36:08 AM
+// Last updated: 7/23/2026, 12:43:23 AM
 1class Solution {
 2public:
 3    string helper(string s, int i, int n){
@@ -24,7 +24,6 @@
 23      return helper(ss,i+1,n);
 24    }
 25    string countAndSay(int n) {
-26        if(n<2) return "1";
-27        else return helper("11",2,n);
-28    }
-29};
+26        return helper("1",1,n);
+27    }
+28};
