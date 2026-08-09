@@ -1,4 +1,4 @@
-// Last updated: 8/9/2026, 3:44:49 PM
+// Last updated: 8/9/2026, 4:07:02 PM
 1/**
 2 * Definition for a binary tree node.
 3 * struct TreeNode {
@@ -12,24 +12,21 @@
 11 */
 12class Solution {
 13public:
-14    bool isIdentical(TreeNode* p, TreeNode* q){
-15        if(p==NULL || q==NULL){
-16            return p==q;
-17
-18        }
-19        return p->val==q->val && isIdentical( p->left,q->left)
-20            and isIdentical( p->right, q->right);  
+14    int height(TreeNode*root){
+15        if(root==NULL){
+16            return 0;
+17        }
+18        int leftSide=height(root->left);
+19        int rightSide=height(root->right);
+20        return max(leftSide,rightSide)+1;
 21    }
-22    bool isSubtree(TreeNode* root, TreeNode* subRoot) {
-23        //base case
-24        if(root==NULL || subRoot==NULL){
-25            return root==subRoot;
-26            //same if else condition where we just check if
-27            //equal then true and not equal then not true
-28        }
-29        if(root->val==subRoot->val and isIdentical(root,subRoot) ){
-30            return true;
-31        }
-32        return isSubtree(root->left,subRoot)|| isSubtree(root->right,subRoot);
-33    } 
-34};
+22    int diameterOfBinaryTree(TreeNode* root) {
+23        if(root == NULL) {
+24            return 0;
+25                        }
+26        int leftRoot=diameterOfBinaryTree(root->left);
+27        int rightRoot=diameterOfBinaryTree(root->right);
+28        int currRoot=height(root->left)+height(root->right);
+29        return max({leftRoot, rightRoot, currRoot});
+30    }
+31};
