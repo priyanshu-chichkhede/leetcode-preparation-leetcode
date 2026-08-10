@@ -1,35 +1,36 @@
-// Last updated: 8/10/2026, 4:25:17 PM
+// Last updated: 8/10/2026, 7:59:48 PM
 1/**
 2 * Definition for a binary tree node.
 3 * struct TreeNode {
 4 *     int val;
 5 *     TreeNode *left;
 6 *     TreeNode *right;
-7 *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-8 * };
-9 */
-10class Solution {
-11public:
-12    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-13        if(root == NULL){
-14            return NULL;
-15        }
-16
-17        if(root == p || root == q){
-18            return root;
-19        }
-20
-21        TreeNode* leftLCA = lowestCommonAncestor(root->left, p, q);
-22        TreeNode* rightLCA = lowestCommonAncestor(root->right, p, q);
-23
-24        if(leftLCA != NULL && rightLCA != NULL){
-25            return root;
-26        }
-27        else if(leftLCA != NULL){
-28            return leftLCA;
-29        }
-30        else{
-31            return rightLCA;
-32        }
-33    }
-34};
+7 *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+8 *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+9 *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+10 * };
+11 */
+12class Solution {
+13public:
+14    bool mirror(TreeNode* right,TreeNode* left){
+15       
+16        if(left==NULL and right==NULL){
+17            return true;
+18        }
+19        if(left==NULL or right==NULL){
+20            return false;
+21        }
+22        if(left->val!=right->val){
+23            return false;
+24        }
+25        return mirror(left->left,right->right)and
+26        mirror(left->right,right->left);
+27    }
+28    bool isSymmetric(TreeNode* root) {
+29        if(root==NULL){
+30            return true;
+31        }
+32     
+33        return mirror(root->left,root->right);
+34    }
+35};
