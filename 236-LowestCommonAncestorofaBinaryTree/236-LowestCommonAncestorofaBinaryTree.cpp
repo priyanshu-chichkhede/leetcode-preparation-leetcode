@@ -1,4 +1,4 @@
-// Last updated: 8/10/2026, 7:59:48 PM
+// Last updated: 8/10/2026, 8:10:20 PM
 1/**
 2 * Definition for a binary tree node.
 3 * struct TreeNode {
@@ -12,25 +12,23 @@
 11 */
 12class Solution {
 13public:
-14    bool mirror(TreeNode* right,TreeNode* left){
-15       
-16        if(left==NULL and right==NULL){
-17            return true;
-18        }
-19        if(left==NULL or right==NULL){
-20            return false;
-21        }
-22        if(left->val!=right->val){
-23            return false;
-24        }
-25        return mirror(left->left,right->right)and
-26        mirror(left->right,right->left);
-27    }
-28    bool isSymmetric(TreeNode* root) {
-29        if(root==NULL){
-30            return true;
-31        }
-32     
-33        return mirror(root->left,root->right);
-34    }
-35};
+14    int height(TreeNode* root) {
+15        if(root == NULL)
+16            return 0;
+17
+18        int left = height(root->left);
+19        int right = height(root->right);
+20
+21        return 1 + max(left, right);
+22    }
+23
+24    bool isBalanced(TreeNode* root) {
+25        if(root == NULL)
+26            return true;
+27
+28        if(abs(height(root->left) - height(root->right)) > 1)
+29            return false;
+30
+31        return isBalanced(root->left) && isBalanced(root->right);
+32    }
+33};
