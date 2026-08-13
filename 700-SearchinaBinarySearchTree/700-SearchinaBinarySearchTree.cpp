@@ -1,4 +1,4 @@
-// Last updated: 8/13/2026, 11:36:00 PM
+// Last updated: 8/14/2026, 12:48:00 AM
 1/**
 2 * Definition for a binary tree node.
 3 * struct TreeNode {
@@ -12,19 +12,17 @@
 11 */
 12class Solution {
 13public:
-14    
-15    TreeNode* searchBST(TreeNode* root, int val) {
-16        if(root==NULL){
-17            return NULL;
-18        }
-19        if(root->val==val){
-20            return root;
-21        }
-22        if(val>root->val){
-23            return searchBST(root->right,val);
-24        }
-25        else{
-26            return searchBST(root->left,val);
-27        }
-28    }
-29};
+14    TreeNode* helper(vector<int>& nums,int st,int end){
+15        if(st>end){
+16            return NULL;
+17        }
+18        int mid=(st+end)/2;
+19        TreeNode* root= new TreeNode(nums[mid]);
+20        root->left=helper(nums,st,mid-1);
+21        root->right=helper(nums,mid+1,end);
+22        return root;
+23    }
+24    TreeNode* sortedArrayToBST(vector<int>& nums) {
+25       return helper(nums,0,nums.size()-1);
+26    }
+27};
