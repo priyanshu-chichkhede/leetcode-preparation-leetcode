@@ -1,17 +1,22 @@
-// Last updated: 8/17/2026, 12:03:06 AM
+// Last updated: 8/17/2026, 1:33:42 AM
 1class Solution {
 2public:
-3    bool canJump(vector<int>& nums) {
+3    int jump(vector<int>& nums) {
 4        int n = nums.size();
-5        int final= n-1;
-6
-7        for(int i=n-2;i>=0;i--) {
-8            if(i+nums[i]>=final){
-9                final=i;
-10                
-11            }
-12        }
-13
-14        return final==0;
-15    }
-16};
+5        int jumps = 0;
+6        int currentEnd = 0;
+7        int farthest = 0;
+8
+9        for(int i = 0; i < n - 1; i++) {
+10
+11            farthest = max(farthest, i + nums[i]);
+12
+13            if(i == currentEnd) {
+14                jumps++;
+15                currentEnd = farthest;
+16            }
+17        }
+18
+19        return jumps;
+20    }
+21};
