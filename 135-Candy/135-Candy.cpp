@@ -1,4 +1,4 @@
-// Last updated: 8/17/2026, 3:10:37 PM
+// Last updated: 8/17/2026, 3:13:13 PM
 1class Solution {
 2public:
 3    int candy(vector<int>& ratings) {
@@ -69,7 +69,7 @@
 68                i++;
 69            }
 70
-71            if (down > peak - 1) {
+71            if (down+1 > peak) {
 72                sum += down - (peak - 1);
 73            }
 74        }
