@@ -1,31 +1,21 @@
-// Last updated: 9/12/2026, 11:08:38 PM
+// Last updated: 9/13/2026, 12:01:35 AM
 1class Solution {
 2public:
-3    // int helper(int n, vector<int>& ans) {
-4    //     if (n <= 2) {
-5    //         return n;
-6    //     }
-7
-8    //     if (ans[n] != -1) {
-9    //         return ans[n];
-10    //     }
-11
-12    //     ans[n] = helper(n-1, ans) + helper(n-2, ans);
-13
-14    //     return ans[n];
-15    // }
-16
-17    int climbStairs(int n) {
-18        if(n<=2){
-19            return n;
-20        }//edge case where the vector is of size 2 or
-21        //something
-22        vector<int> ans(n+1);
-23        ans[1]=1;
-24        ans[2]=2;
-25        for(int i=3;i<ans.size();i++){
-26            ans[i]=ans[i-1]+ans[i-2];
-27        }
-28        return ans[n];
-29    }
-30};
+3    int rob(vector<int>& nums) {
+4        int n=nums.size();
+5        vector<int> dp(n);
+6        if(n==1){
+7            return nums[0];
+8        }
+9        if(n==2){
+10           return max(nums[0],nums[1]); 
+11        }
+12        dp[0]=nums[0];
+13        dp[1]=max(nums[0],nums[1]);
+14        for(int i=2;i<dp.size();i++){
+15            dp[i] = max(dp[i-1], dp[i-2] + nums[i]);
+16        }
+17        return dp[n-1];
+18
+19    }
+20};
