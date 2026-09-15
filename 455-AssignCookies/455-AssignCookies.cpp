@@ -1,21 +1,22 @@
-// Last updated: 8/16/2026, 8:16:33 PM
+// Last updated: 9/15/2026, 2:24:41 PM
 1class Solution {
 2public:
-3    int findContentChildren(vector<int>& g, vector<int>& s) {
-4        int m=g.size();
-5        int n=s.size();
-6        sort(g.begin(),g.end());
-7        sort(s.begin(),s.end());
-8        int i=0;
-9        int j=0;
-10        int count=0;
-11        while(j<n and i<m){
-12            if(g[i]<=s[j]){
-13                count++;
-14                i++;
-15            }
-16            j++;
-17        }
-18        return count;
-19    }
-20};
+3    int maxScore(vector<int>& cardPoints, int k) {
+4        int n=cardPoints.size();
+5        int leftSum=0;
+6        int rightSum=0;
+7        int maxSum=0;
+8        for(int i=0;i<=k-1;i++){
+9            leftSum=leftSum+cardPoints[i];
+10        }
+11        maxSum = leftSum;
+12        int rightInd=n-1;
+13        for(int i=k-1;i>=0;i--){
+14            leftSum=leftSum-cardPoints[i];
+15            rightSum=rightSum+cardPoints[rightInd];
+16            rightInd=rightInd-1;
+17            maxSum=max(maxSum,leftSum+rightSum);
+18        }
+19         return maxSum;
+20    }
+21};
