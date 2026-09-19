@@ -1,29 +1,25 @@
-// Last updated: 9/19/2026, 2:26:53 PM
+// Last updated: 9/19/2026, 3:03:50 PM
 1class Solution {
 2public:
-3    bool findSubarrays(vector<int>& nums) {
+3    int maxProduct(vector<int>& nums) {
 4        int n = nums.size();
-5        int k = 0;
-6        int count = 0;
-7
-8        while(k < n - 1) {
-9            int sum = nums[k] + nums[k + 1];
-10
-11            int i = k + 1;
-12            int j = k + 2;
-13
-14            while(j < n) {
-15                if(sum == nums[i] + nums[j]) {
-16                    return true;
-17                }
+5
+6        int maxi = nums[0];
+7        int mini = nums[0];
+8        int ans = nums[0];
+9
+10        for(int i = 1; i < n; i++) {
+11
+12            int a = nums[i];
+13            int b = maxi * nums[i];
+14            int c = mini * nums[i];
+15
+16            maxi = max(a, max(b, c));
+17            mini = min(a, min(b, c));
 18
-19                i++;
-20                j++;
-21            }
-22
-23            k++;
-24        }
-25
-26        return false;
-27    }
-28};
+19            ans = max(ans, maxi);
+20        }
+21
+22        return ans;
+23    }
+24};
